@@ -7,6 +7,9 @@ current_location = os.getcwd()
 data_location = 'Data/'
 intent_data = {}
 
+#Adjust for data folder manually
+os.chdir('..')
+
 #Go to data_location
 os.chdir(data_location)
 people = os.listdir('.')
