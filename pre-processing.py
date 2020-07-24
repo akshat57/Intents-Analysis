@@ -17,10 +17,27 @@ pickle.dump(labelled_data, a_file)
 a_file.close()
 
 stats = {}
+phone_lengths = []
+list_of_phones = []
 for key in labelled_data:
     stats[key] = len(labelled_data[key])
 
-print(stats)
+    for utterance in labelled_data[key]:
+        phone_lengths.append(len(utterance)) 
+        list_of_phones += utterance
+
+print('\nNumber of utterances per intent')
+for key in stats:
+    print('--', key, ':', stats[key])
+print('')
+
+mean_num_phones = sum(phone_lengths) / len(phone_lengths)
+print('Total phones in the dataset : ', len(list_of_phones))
+print('Total number of utterances :', len(phone_lengths))
+print('Average number of phones per dialogue :', mean_num_phones)
+print('Number of unique phones : ', len(set(list_of_phones)))
+
+print('')
 
 
 

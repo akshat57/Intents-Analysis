@@ -1,5 +1,6 @@
 from get_vocab import *
 import matplotlib.pyplot as plt
+import operator
 
 def word_to_index(vocab):
     word_index = {}
@@ -12,8 +13,16 @@ def word_to_index(vocab):
 
 if __name__ == '__main__':
     data = load_data()
-    vocab = get_vocab()
+    vocab, all_occurences = get_vocab(3)
     word_index = word_to_index(vocab)
+
+    occurences = {}
+    for word in vocab:
+        occurences[word] = all_occurences.count(word)
+
+    sorted_occurences = sorted(occurences.items(), key=operator.itemgetter(1))
+    print(sorted_occurences)
+
 
     frequency = {}
 

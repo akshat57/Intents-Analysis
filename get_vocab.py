@@ -15,11 +15,13 @@ def build_ngrams(dialogue, N):
             dialogue.insert(0,'0'.encode('utf-8'))
             dialogue.append('0'.encode('utf-8'))
         
-        for i in range(len(dialogue) -2):
-            vocab.append(dialogue[i].decode('utf-8') + dialogue[i+1].decode('utf-8') + dialogue[i+2].decode('utf-8'))
-
+        for i in range(len(dialogue) - N - 1):
+            word = ''
+            for j in range(N):
+                word += dialogue[i+j].decode('utf-8')
+            vocab.append(word)
+ 
         return vocab
-
     else:
         return vocab
 
@@ -30,11 +32,15 @@ def get_vocab(N = 3):
     vocab = []
     for key in data:
         for dialogue in data[key]:
-            vocab += build_ngrams(dialogue, 3)
+            vocab += build_ngrams(dialogue, N)
 
-    return set(vocab)
+    return set(vocab), vocab
 
 
 if __name__ == '__main__':
-    vocab = get_vocab(3)
-    print(len(vocab), vocab)
+    print('\nNumber of unique N-gram phones : ')
+    for i in range(1,5):
+        vocab, _ = get_vocab(i)
+        print('-- N =', i , ':', len(vocab))
+        
+    print('')
