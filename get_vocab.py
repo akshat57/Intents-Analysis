@@ -12,13 +12,13 @@ def build_ngrams(dialogue, N):
     vocab = []
     if len(dialogue) > 0:
         for i in range(N-1):
-            dialogue.insert(0,'0'.encode('utf-8'))
-            dialogue.append('0'.encode('utf-8'))
+            dialogue.insert(0,'0')
+            dialogue.append('0')
         
-        for i in range(len(dialogue) - N - 1):
+        for i in range(len(dialogue) - N + 1):
             word = ''
             for j in range(N):
-                word += dialogue[i+j].decode('utf-8')
+                word += dialogue[i+j]
             vocab.append(word)
  
         return vocab
