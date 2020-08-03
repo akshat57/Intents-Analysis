@@ -36,6 +36,8 @@ def create_new_conversation(current_location, new_data_location, person, valid_c
     #Transfering conversation_list.txt
     conversation_file_location = current_location + '/conversation_list.txt' 
     os.system('cp ' + conversation_file_location + ' conversation_list.txt') 
-    
+    conversation_file_location = current_location + '/conversation_transcript.txt' 
+    os.system('cp ' + conversation_file_location + ' conversation_transcript.txt')
+
     os.chdir(current_location)
    

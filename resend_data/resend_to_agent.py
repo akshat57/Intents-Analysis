@@ -5,7 +5,7 @@ import sox
 from helper_functions_resend import *
 
 
-resend_location = '/home/akshatgu/WorkingWithData/Data_Resent/'
+resend_location = '/home/akshatgu/WorkingWithData/Data_20200725_064731/'
 
 #Go to working directory
 os.chdir(resend_location)

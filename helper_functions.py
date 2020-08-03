@@ -25,14 +25,15 @@ def get_labels( location = ''):
 
         if len(list(unique_intents.keys())) == 0:
             unique_intents[audio] = {'location': location, 'intent' : intent, 'text': text}
-        elif intent not in set(intent_list):
+        elif intent != intent_list[-1]:
             unique_intents[audio] = {'location': location, 'intent' : intent, 'text': text}
 
         intent_list.append(intent)
 
     print(unique_intents.keys())
     for audio in unique_intents:
-        result = subprocess.check_output('python3 -m allosaurus.run --lang hin -i ' + audio, shell=True)
+        result = subprocess.check_output('python3 -m allosaurus.run --lang eng -i ' + audio, shell=True)
+        #result = subprocess.check_output('python3 -m allosaurus.run --lang hin -i ' + audio, shell=True)
         result_list = result.split()
         unique_intents[audio]['phones'] = result_list
 
