@@ -14,4 +14,8 @@ We have the following files :
 	- get_vocab.py :
 		This is used to get the N-gram vocabulary of all the utterances.
 
-	- 
+	- get_frequency.py :
+		This is used to get the frequency of occurences of N-gram phones.
+
+	- naive_bayes.py :
+		This runs naive bayes for the N-gram case. Also does cross validation. 

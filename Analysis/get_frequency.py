@@ -49,15 +49,16 @@ def plot_all(frequency):
 def plot_few(frequency):
     intents = ['CheckBalance', 'Send Money', 'Check Last Transaction', 'Withdraw Money', 'Deposit' ]
 
-    key = intents[0]
+    legend = []
+    key = intents[1]
     plt.bar(list(frequency[key].keys()), list(frequency[key].values()))
     legend.append(key)
-    key = intents[2]
+    key = intents[3]
     plt.bar(list(frequency[key].keys()), list(frequency[key].values()))
     legend.append(key)
-    key = intents[4]
-    plt.bar(list(frequency[key].keys()), list(frequency[key].values()))
-    legend.append(key) 
+    #key = intents[4]
+    #plt.bar(list(frequency[key].keys()), list(frequency[key].values()))
+    #legend.append(key) 
 
     plt.legend(legend)
     plt.show()   
@@ -66,7 +67,8 @@ def plot_few(frequency):
 
 if __name__ == '__main__':
 
-    frequency, sorted_occurences = get_frequency(1)
-    print(frequency)
+    frequency, sorted_occurences = get_frequency(3)
+    #print(frequency)
+    #plot_few(frequency)
 
 

@@ -96,7 +96,7 @@ def cross_validation(N = 1):
         print('')
 
 
-cross_validation(3)
+cross_validation(2)
 
 ###USE THIS TO TRAIN WITH THE ENTIRE DATASET AND FIND ACCURACY ON TRAIN SET
 #frequency, word_index = build_naive_bayes()
