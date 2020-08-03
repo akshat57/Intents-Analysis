@@ -42,6 +42,6 @@ for person in people:
     os.chdir('..')
 
 os.chdir(current_location)
-a_file = open("data.pkl", "wb")
+a_file = open("data_english.pkl", "wb")
 pickle.dump(intent_data, a_file)
 a_file.close()
