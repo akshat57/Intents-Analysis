@@ -19,3 +19,13 @@ We have the following files :
 
 	- naive_bayes.py :
 		This runs naive bayes for the N-gram case. Also does cross validation. 
+
+
+The process:
+1. Run 'summarize_data_from_awbpc.py' to get a summary of data. This is used to build both train and test data.
+	RUN DEFAULT : python3 summarize_data_from_awbpc.py
+	RUN WITH FLAGS : python3 summarize_data_from_awbpc.py --lang marathi
+
+2. Run DEFAULT 'pre_processing_mypc.py' with the file you want to use as training data. Use that to build 'intent_labels.pkl'.
+	To pre-process other language data, which is not training data,
+	RUN : python3 pre_processing_mypc.py --lang marathi --flag Test

@@ -10,7 +10,11 @@ def save_data(filename, data):
     a_file.close()
 
 
-def build_naive_bayes(N=1, filename='intent_labels.pkl'):
+def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl'):
+    '''
+        N = N-gram
+        filename = filename for training set
+    '''
     frequency, word_index = get_frequency(N, filename)
     vocab, _ = get_vocab(N, filename)
     vocab_length = len(vocab)
@@ -20,13 +24,18 @@ def build_naive_bayes(N=1, filename='intent_labels.pkl'):
         
         for word in frequency[key]:
             frequency[key][word] = math.log( (frequency[key][word] + 1) / (total_words + vocab_length) )
-    
+        frequency[key]['UNK'] = 1 / (total_words + vocab_length) 
 
     return frequency, word_index
 
 
-def run_naive_bayes(frequency, word_index , N = 1, filename = 'intent_labels.pkl'):
-
+def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_labels.pkl'):
+    '''
+        Use this function to run the naive bayes built in 'build_naive_bayes' with a test set.
+        frequency, word_index, N: from naive bayes training
+        filename = test file
+    '''
+    all_intents = ['Check Last Transaction', 'CheckBalance', 'Send Money', 'Withdraw Money', 'Deposit']
     data = load_data(filename)
     correct = 0
     total = 0
@@ -35,11 +44,17 @@ def run_naive_bayes(frequency, word_index , N = 1, filename = 'intent_labels.pkl
             total += 1
             ngrams = build_ngrams(utterance, N)
             probability = {}
-            for key_naive in data:
+            for key_naive in all_intents:
                 probability[key_naive] = 0
                 for word in ngrams:
-                    probability[key_naive] += frequency[key_naive][word_index[word]]
-
+                    if word in word_index:
+                        if word_index[word] in frequency[key_naive]:
+                            probability[key_naive] += frequency[key_naive][word_index[word]]
+                        else:
+                            probability[key_naive] += frequency[key_naive]['UNK']
+                    else:
+                        probability[key_naive] += frequency[key_naive]['UNK']
+            
             probability = sorted(probability.items(), key=operator.itemgetter(1), reverse = True)
 
             if key == probability[0][0]:
@@ -47,6 +62,9 @@ def run_naive_bayes(frequency, word_index , N = 1, filename = 'intent_labels.pkl
             print(key, '--', probability[0][0])
 
     print('Accuracy : ', correct/total, 'Total : ', total, 'Correct : ', correct)
+    
+    return correct, total
+
 
 
 def cross_validation(N = 1):
@@ -57,7 +75,10 @@ def cross_validation(N = 1):
     yes = [True,True]
     no = [False,False]
 
+    correct = 0
+    total = 0
     for i in range(12):
+
         flag = no * i + yes + no * (11-i)
         state_counter = 0
         training_data = {}
@@ -83,21 +104,30 @@ def cross_validation(N = 1):
 
                     state_counter +=1
 
-        save_data('training_data.pkl', training_data)
-        save_data('testing_data.pkl', testing_data)
+        save_data('Labels/training_data.pkl', training_data)
+        save_data('Labels/testing_data.pkl', testing_data)
 
-        frequency, word_index = build_naive_bayes(N, 'training_data.pkl')
+        frequency, word_index = build_naive_bayes(N, 'Labels/training_data.pkl')
         #print('Training', '-'*20)
-        #run_naive_bayes(frequency, word_index, N, 'training_data.pkl')
+        #run_naive_bayes(frequency, word_index, N, 'Labels/training_data.pkl')
         #print('')
         print('Testing', '-'*20)
-        run_naive_bayes(frequency, word_index, N, 'testing_data.pkl')
+        metrics = run_naive_bayes(frequency, word_index, N, 'Labels/testing_data.pkl')
         print('='*50)
         print('')
 
+        correct += metrics[0]
+        total += metrics[1]
 
-cross_validation(2)
+    print('Overal accuracy --', correct/total)
+
+
+if __name__ == '__main__':
+    cross_validation(1)
+
 
 ###USE THIS TO TRAIN WITH THE ENTIRE DATASET AND FIND ACCURACY ON TRAIN SET
-#frequency, word_index = build_naive_bayes()
-#run_naive_bayes(frequency, word_index)
+    '''N = 3
+    frequency, word_index = build_naive_bayes(N)
+    run_naive_bayes(frequency, word_index, N)
+'''

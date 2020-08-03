@@ -1,0 +1,25 @@
+20200703_015825.wav,Data/zander.slayer/conversation1/,Check Last Transaction,मेरा आखरी लेखा-जोखा क्या है,merəakrilekaʝokakɪahə
+20200703_015913.wav,Data/zander.slayer/conversation1/,CheckBalance,मेरे खाते में कितना पैसा है,merekat̪emeket̪əɳapaɪisaə
+20200704_144744.wav,Data/agumpart/conversation1/,CheckBalance,मेरा बाग में कितना बैलेंस है,bɪrabakmɔ̃kɪlabalasə
+20200704_144827.wav,Data/agumpart/conversation1/,Withdraw Money,मेरे अकाउंट से ₹100 भी ड्रॉ करना है,perakamoɳʂesolopebelʂosat̪ɳa
+20200704_144914.wav,Data/agumpart/conversation1/,CheckBalance,अब मेरे खाते में कितना बैलेंस है,hɔəbmɛərəkalt̪əmɪɡɪslabaɪɛlasə
+20200706_173937.wav,Data/akhil/conversation1/,CheckBalance,मेरा अकाउंट बैलेंस कितना है,baɪɛraɡaʊlbaəsɡɪəmaxɛ
+20200706_174024.wav,Data/akhil/conversation1/,Send Money,रागिनी को पैसे भेजो,eloalɪɳɪikopaefepeɪso
+20200706_174808.wav,Data/ragini/conversation1/,Check Last Transaction,लास्ट चांस बॉक्स डिटेल बताओ,maxt̪ʰəaɪəɳəbɛksəlɪəbɛlsfɛsaə
+20200707_031214.wav,Data/krititake2/conversation1/,Send Money,मुझे किसी को पैसे भेजने हैं,ɒmoʒɛkasɪkɔpesobəɛɳsmɛa
+20200707_142155.wav,Data/akshatgu/conversation1/,CheckBalance,मेरे अकाउंट में कितना बैलेंस है,mɪrekalbəkɪmabalɪsə
+20200707_142221.wav,Data/akshatgu/conversation1/,Send Money,मुझे पैसे भेज वाने हैं,uɪpɒsɒbɪəbaɳɛ
+20200707_153643.wav,Data/zander.slayer/conversation4/,Send Money,मुझे पुष्पा को मैसेज भेजने हैं,muepospakomesɛpæsmehə
+20200708_085243.wav,Data/srallaba/conversation1/,Send Money,मुझे अपनी बहन को ऐसे भेजना है,mɔ̃jæplɪbɪɛmkɔaɛsɛplɪxmɒ
+20200708_085442.wav,Data/srallaba/conversation1/,Send Money,मुझे पैसे किसी और को भेजनी है,moæpaɪesekəpiɔrkopesmɪe
+20200710_143130.wav,Data/zander.slayer/conversation3/,Send Money,मुझे पप्पू को पैसे भेजने हैं,oepapokopeʂɛbɪʒɳeæ
+20200710_182619.wav,Data/srallaba/conversation2/,CheckBalance,मेरे अकाउंट में कितना बैलेंस है,mereakoɳmeket̪umabalase
+20200711_023909.wav,Data/sk18/conversation1/,Send Money,हेलो मुझे पैसे भेजो करने हैं,ɒɳomoɛpɒsebɪʒɔɡameæ
+20200711_024153.wav,Data/sk18/conversation1/,Send Money,मुझे पैसे भेजने हैं,mʊʒjɛpasɛwɛɡəmɛh
+20200711_124615.wav,Data/vivek/conversation1/,CheckBalance,मेरे अकाउंट में कितना बैलेंस है,merekoooket̪ɳaɡeɪleɳse
+20200711_124706.wav,Data/vivek/conversation1/,Send Money,मुझे अक्षय को पैसे भेजने,mʊaʂalopesemesme
+20200716_013731.wav,Data/snower/conversation3/,CheckBalance,मुझे मेरा अकाउंट बैलेंस चेक करना है,mot̪ʰɛmɛlaapɒʊbalɪkɛkɛrmaɛ
+20200716_014010.wav,Data/snower/conversation3/,Check Last Transaction,मेरी लास्ट ट्रांजैक्शन क्या थी,mɪrɪlast̪azaxɪmpɪt̪ʰɪ
+20200716_024945.wav,Data/kanvgarg/conversation1/,CheckBalance,मुझे अपने अकाउंट में जितने भी पैसे हैं उनके बारे में पता करना,musɪabːɳekauʊlmed̪ɪt̪eripeɪʂeoɳt̪eaɪremebot̪alekwo
+20200716_025246.wav,Data/kanvgarg/conversation1/,Deposit,मुझे बैंक में पैसे जमा करवाने हैं,muebæŋkmepesed̪emakorlaɳihe
+20200716_025421.wav,Data/kanvgarg/conversation1/,Send Money,मुझे अक्षत को पैसे ट्रांसफर करने हैं,musɪakelpopaɪsɛrɒɳsɛrlɡerɳɪɡə

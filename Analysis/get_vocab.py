@@ -1,6 +1,6 @@
 import pickle
 
-def load_data(filename = "intent_labels.pkl"):
+def load_data(filename = "Labels/intent_labels.pkl"):
     a_file = open(filename, "rb")
     output = pickle.load(a_file)
     a_file.close()
@@ -26,7 +26,7 @@ def build_ngrams(dialogue, N):
         return vocab
 
 
-def get_vocab(N = 3, filename= "intent_labels.pkl" ):
+def get_vocab(N = 3, filename= "Labels/intent_labels.pkl" ):
     data = load_data(filename)
 
     vocab = []

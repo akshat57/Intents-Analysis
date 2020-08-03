@@ -10,7 +10,7 @@ def word_to_index(vocab):
 
     return word_index
 
-def get_frequency(N = 3, filename = "intent_labels.pkl"):
+def get_frequency(N = 3, filename = "Labels/intent_labels.pkl"):
     data = load_data(filename)
     vocab, all_occurences = get_vocab(N)
 
