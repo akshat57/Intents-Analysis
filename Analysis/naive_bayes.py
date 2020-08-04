@@ -123,7 +123,7 @@ def cross_validation(N = 1):
 
 
 if __name__ == '__main__':
-    cross_validation(1)
+    cross_validation(3)
 
 
 ###USE THIS TO TRAIN WITH THE ENTIRE DATASET AND FIND ACCURACY ON TRAIN SET
