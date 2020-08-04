@@ -42,6 +42,7 @@ for person in people:
     os.chdir('..')
 
 os.chdir(current_location)
+#change language data_lang
 a_file = open("data_english.pkl", "wb")
 pickle.dump(intent_data, a_file)
 a_file.close()
