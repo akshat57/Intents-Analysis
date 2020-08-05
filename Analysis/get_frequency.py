@@ -12,7 +12,7 @@ def word_to_index(vocab):
 
 def get_frequency(N = 3, filename = "Labels/intent_labels.pkl"):
     data = load_data(filename)
-    vocab, all_occurences = get_vocab(N)
+    vocab, all_occurences = get_vocab(N, filename)
 
     occurences = {}
     for word in vocab:

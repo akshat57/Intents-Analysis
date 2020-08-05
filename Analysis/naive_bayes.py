@@ -2,6 +2,16 @@ from get_vocab import *
 from get_frequency import *
 import math
 import operator
+import sys, os
+
+# Disable
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
+
+# Restore
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
 
 def save_data(filename, data):
     #Storing data with labels
@@ -10,11 +20,12 @@ def save_data(filename, data):
     a_file.close()
 
 
-def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl'):
+def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl', threshold = 0):
     '''
         N = N-gram
         filename = filename for training set
     '''
+
     frequency, word_index = get_frequency(N, filename)
     vocab, _ = get_vocab(N, filename)
     vocab_length = len(vocab)
@@ -23,8 +34,18 @@ def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl'):
         total_words = sum(list(frequency[key].values()))
         
         for word in frequency[key]:
-            frequency[key][word] = math.log( (frequency[key][word] + 1) / (total_words + vocab_length) )
-        frequency[key]['UNK'] = 1 / (total_words + vocab_length) 
+            if threshold != 0:
+                if frequency[key][word] < threshold:
+                    frequency[key][word] = math.log( 1 / (total_words * 1000) )
+                else:
+                    frequency[key][word] = math.log( (frequency[key][word]) / (total_words) )
+            else:
+                frequency[key][word] = math.log( (frequency[key][word] + 1) / (total_words + vocab_length) )
+        
+        if threshold != 0:
+            frequency[key]['UNK'] = math.log( 1 / (total_words * 1000) )
+        else:
+            frequency[key]['UNK'] = math.log(1 / (total_words + vocab_length) )
 
     return frequency, word_index
 
@@ -67,7 +88,7 @@ def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_lab
 
 
 
-def cross_validation(N = 1):
+def cross_validation(N = 1, threshold = 0):
     data = load_data()
 
     #allowed states are states with more than 1 training sample
@@ -107,7 +128,7 @@ def cross_validation(N = 1):
         save_data('Labels/training_data.pkl', training_data)
         save_data('Labels/testing_data.pkl', testing_data)
 
-        frequency, word_index = build_naive_bayes(N, 'Labels/training_data.pkl')
+        frequency, word_index = build_naive_bayes(N, 'Labels/training_data.pkl', threshold)
         #print('Training', '-'*20)
         #run_naive_bayes(frequency, word_index, N, 'Labels/training_data.pkl')
         #print('')
@@ -120,10 +141,25 @@ def cross_validation(N = 1):
         total += metrics[1]
 
     print('Overal accuracy --', correct/total)
+    return correct/total
 
 
 if __name__ == '__main__':
-    cross_validation(3)
+    compare = 1
+
+    if compare:
+        for ngram in range(1,4):
+            print('For Ngram :', ngram)
+            for threshold in range(7):
+                blockPrint()
+                accuracy = cross_validation(ngram, threshold)
+
+                enablePrint()
+                print('-- For threshold', threshold, ':', accuracy)
+            print('')
+
+    else:
+        cross_validation(1, 5)
 
 
 ###USE THIS TO TRAIN WITH THE ENTIRE DATASET AND FIND ACCURACY ON TRAIN SET
