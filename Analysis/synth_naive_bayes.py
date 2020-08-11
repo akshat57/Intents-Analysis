@@ -11,7 +11,7 @@ def blockPrint():
 def enablePrint():
     sys.stdout = sys.__stdout__
 
-print('TRAINED ON SYNTHETIC HINDI DATA, TESTED ON NATURAL HINDI DATA\n')
+print('TRAINED ON ENTIRE ONE (SYNTHETIC) DATA SET, TESTED ON ENTIRE ANOTHER (NATURAL) HINDI DATA\n')
 
 for ngram in range(1,4):
     print('Ngram :', ngram)

@@ -88,8 +88,8 @@ def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_lab
 
 
 
-def cross_validation(N = 1, threshold = 0):
-    data = load_data()
+def cross_validation( N = 1, threshold = 0, filename = "Labels/intent_labels.pkl"):
+    data = load_data(filename)
 
     #allowed states are states with more than 1 training sample
     allowed_states = ['Check Last Transaction', 'CheckBalance', 'Send Money']
@@ -152,14 +152,15 @@ if __name__ == '__main__':
             print('For Ngram :', ngram)
             for threshold in range(7):
                 blockPrint()
-                accuracy = cross_validation(ngram, threshold)
+                #accuracy = cross_validation(ngram, threshold)
+                accuracy = cross_validation(ngram, threshold, 'Labels/intent_synthesized_hindi_labels.pkl')
 
                 enablePrint()
                 print('-- For threshold', threshold, ':', accuracy)
             print('')
 
     else:
-        cross_validation(1, 5)
+        cross_validation(2, 4)
 
 
 ###USE THIS TO TRAIN WITH THE ENTIRE DATASET AND FIND ACCURACY ON TRAIN SET
