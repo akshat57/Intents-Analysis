@@ -7,7 +7,7 @@ def removeDS(array):
         array.remove('.DS_Store')
     return array
 
-data_location = 'test/'
+data_location = 'test_female_2/'
 STORE_LOCATION = '/home/akshatgu/Intents-Analysis/Phone_Data' 
 
 os.chdir(data_location)
@@ -23,6 +23,6 @@ for audio in files:
     phones.append(result_list)
 
 os.chdir(STORE_LOCATION)
-a_file = open("data_synthesized.pkl", "wb")
+a_file = open("data_synthesized_female_2.pkl", "wb")
 pickle.dump(phones, a_file)
 a_file.close()
