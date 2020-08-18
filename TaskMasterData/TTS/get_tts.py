@@ -8,7 +8,7 @@ def save_data(filename, data):
     a_file.close()
 
 
-
+audio_save_location = '/home/akshatgu/TaskMaster/google_TTS_US_ENG/'
 language_code = 'en-US'
 voices = ['en-US-Standard-B', 'en-US-Standard-C', 'en-US-Standard-D', 'en-US-Standard-E']
 
@@ -36,11 +36,10 @@ while len(all_keys) != 0:
 
 #Sending for TTS
 for key in utterances:
+    print(key)
     text = utterances[key]
-    output_file = key
+    output_file = audio_save_location + key
     voice_name = index_to_voice[key]
     do_tts(text, output_file, language_code, voice_name)
-    break
-#print(index_to_voice)
 
 save_data('index_to_voice.pkl', index_to_voice)
