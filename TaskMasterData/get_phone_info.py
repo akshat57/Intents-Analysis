@@ -7,7 +7,7 @@ def removeDS(array):
         array.remove('.DS_Store')
     return array
 
-info_location = '/home/akshatgu/TaskMaster/google_TTS_US_ENG/'
+info_location = '/home/akshatgu/TaskMaster/'
 
 a_file = open( info_location + 'intent_stats.pkl', "rb")
 intent_stats = pickle.load(a_file)
