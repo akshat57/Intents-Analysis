@@ -4,7 +4,6 @@ def load_data(filename = "Labels/intent_labels.pkl"):
     a_file = open(filename, "rb")
     output = pickle.load(a_file)
     a_file.close()
-
     return output
 
 def build_ngrams(dialogue, N):

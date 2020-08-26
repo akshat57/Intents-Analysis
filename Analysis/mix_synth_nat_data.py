@@ -28,11 +28,11 @@ def combine_nat_synth_testmix(set1, set2):
     for key in set1_data:
         combined_data[key] = set1_data[key] + set2_data[key]
     
-    a_file = open("Labels/temp.pkl", "wb")
+    a_file = open("Labels/intent_synthesized_all_hindi_labels.pkl", "wb")
     pickle.dump(combined_data, a_file)
     a_file.close()
 
-    cross_validation_combine('Labels/temp.pkl', 'Labels/Combine_Nat_Synth/test_mix/', 23)
+    #cross_validation_combine('Labels/temp.pkl', 'Labels/Combine_Nat_Synth/test_mix/', 23)
 
 
 
@@ -99,8 +99,10 @@ def combine_nat_synth_test(synthetic_labels, natural_labels, test_flag):
 
 
 ###Mix data up
-synthetic_labels = 'Labels/intent_synthesized_hindi_labels.pkl'
-natural_labels = 'Labels/intent_hindi_labels.pkl'
+#synthetic_labels = 'Labels/intent_synthesized_hindi_labels.pkl'
+#natural_labels = 'Labels/intent_hindi_labels.pkl'
+#synthetic_labels = 'Labels/intent_synthesized_female_1_hindi_labels.pkl'
+#natural_labels = 'Labels/intent_synthesized_all_female_hindi_labels.pkl'
 #combine_nat_synth_testmix(synthetic_labels, natural_labels)
 #combine_nat_synth_test(synthetic_labels, natural_labels, 'nat')
 #combine_nat_synth_test(synthetic_labels, natural_labels, 'synth')

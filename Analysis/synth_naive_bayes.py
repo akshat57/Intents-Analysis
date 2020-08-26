@@ -17,7 +17,9 @@ for ngram in range(1,4):
     print('Ngram :', ngram)
     for threshold in range(5):
 
-        build_file = 'Labels/intent_synthesized_hindi_labels.pkl'
+        #build_file = 'Labels/intent_synthesized_hindi_labels.pkl'
+        #build_file = 'Labels/intent_synthesized_all_female_hindi_labels.pkl'
+        build_file = 'Labels/intent_synthesized_all_hindi_labels.pkl'
         test_file = 'Labels/intent_hindi_labels.pkl'
         
         blockPrint()

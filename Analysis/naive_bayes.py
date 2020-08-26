@@ -50,17 +50,21 @@ def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl', threshold = 0):
     return frequency, word_index
 
 
-def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_labels.pkl'):
+def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_labels.pkl', all_intents = None):
     '''
         Use this function to run the naive bayes built in 'build_naive_bayes' with a test set.
         frequency, word_index, N: from naive bayes training
         filename = test file
     '''
-    all_intents = ['Check Last Transaction', 'CheckBalance', 'Send Money', 'Withdraw Money', 'Deposit']
+    if all_intents == None:
+        all_intents = ['Check Last Transaction', 'CheckBalance', 'Send Money', 'Withdraw Money', 'Deposit']
+        
     data = load_data(filename)
     correct = 0
     total = 0
+    accuracy_per_intent = {}
     for key in data:
+        accuracy_per_intent[key] = 0
         for utterance in data[key]:
             total += 1
             ngrams = build_ngrams(utterance, N)
@@ -79,12 +83,17 @@ def run_naive_bayes(frequency, word_index , N = 1, filename = 'Labels/intent_lab
             probability = sorted(probability.items(), key=operator.itemgetter(1), reverse = True)
 
             if key == probability[0][0]:
+                accuracy_per_intent[key] += 1
                 correct += 1
             print(key, '--', probability[0][0])
+        accuracy_per_intent[key] /= len(data[key])
 
     print('Accuracy : ', correct/total, 'Total : ', total, 'Correct : ', correct)
     
-    return correct, total
+    if all_intents == None:
+        return correct, total
+    else:
+        return correct, total, accuracy_per_intent
 
 
 
@@ -153,7 +162,7 @@ if __name__ == '__main__':
             for threshold in range(7):
                 blockPrint()
                 #accuracy = cross_validation(ngram, threshold)
-                accuracy = cross_validation(ngram, threshold, 'Labels/intent_synthesized_hindi_labels.pkl')
+                accuracy = cross_validation(ngram, threshold, 'Labels/intent_synthesized_female_2_hindi_labels.pkl')
 
                 enablePrint()
                 print('-- For threshold', threshold, ':', accuracy)

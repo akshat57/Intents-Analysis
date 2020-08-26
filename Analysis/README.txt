@@ -29,3 +29,15 @@ The process:
 2. Run DEFAULT 'pre_processing_mypc.py' with the file you want to use as training data. Use that to build 'intent_labels.pkl'.
 	To pre-process other language data, which is not training data,
 	RUN : python3 pre_processing_mypc.py --lang marathi --flag Test
+
+SYNTHESIZED data
+1. RUN synthesized_summarize.py to convert synthesize data file into a labels.txt file.
+2. RUN synthesized_stats.py to see similarity index values for two given speech samples.
+3. 
+
+
+
+
+SYNTHESIZED FEMALE 1 IS ARCHANA
+SYNTHESIZED FEMALE 2 IS IITF
+SYNTHESIZED IS SYNTHESIZED MALE VOICE

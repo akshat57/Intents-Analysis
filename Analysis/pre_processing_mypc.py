@@ -25,18 +25,16 @@ def preprocess(lang = 'hindi', flag = 'Train'):
         pickle.dump(labelled_data, a_file)
         a_file.close()
 
-        print('\nTotal number of utterances :', len(data))
     else:
         a_file = open("Labels/intent_" + lang + "_labels.pkl", "wb")
         pickle.dump(labelled_data, a_file)
         a_file.close()
 
-
+    print('\nTotal number of utterances :', len(data))
     phone_lengths = []
     list_of_phones = []
     for key in labelled_data:
-        if flag == 'Train':
-            print('--', key, ':', len(labelled_data[key]))
+        print('--', key, ':', len(labelled_data[key]))
 
         for utterance in labelled_data[key]:
             phone_lengths.append(len(utterance)) 

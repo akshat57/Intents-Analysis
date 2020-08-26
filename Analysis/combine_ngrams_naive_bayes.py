@@ -65,22 +65,28 @@ def run_naive_bayes_single_utterance(frequency, word_index , N,utterance):
 if __name__ == '__main__':
     create_dataset = 0
     if create_dataset:
-        cross_validation_combine('Labels/intent_synthesized_hindi_labels.pkl', 'Labels/Combine_Ngram_Synth/')
+        cross_validation_combine('Labels/intent_synthesized_female_2_hindi_labels.pkl', 'Labels/Combine_Ngram_Synth/')
 
 
 
     uni_correct = 0
     correct = 0
     total = 0
-    for i in range(12):
+    for i in range(1):
         #training_data = 'Labels/Combine/training_data_' + str(i) + '.pkl'
         #testing_data = 'Labels/Combine/testing_data_' + str(i) + '.pkl'
         #training_data = 'Labels/Combine_Ngram_Synth/training_data_' + str(i) + '.pkl'
         #testing_data = 'Labels/Combine_Ngram_Synth/testing_data_' + str(i) + '.pkl'
-        training_data = 'Labels/Combine_Nat_Synth/test_synth/training_data_' + str(i) + '.pkl'
-        testing_data = 'Labels/Combine_Nat_Synth/test_synth/testing_data_' + str(i) + '.pkl'
-        frequency_uni, word_index_uni = build_naive_bayes(1, training_data, 0)
-        frequency_bi, word_index_bi = build_naive_bayes(2, training_data, 2)
+        #training_data = 'Labels/Combine_Nat_Synth/test_synth/training_data_' + str(i) + '.pkl'
+        #testing_data = 'Labels/Combine_Nat_Synth/test_synth/testing_data_' + str(i) + '.pkl'
+        
+        #training_data = 'Labels/intent_synthesized_hindi_labels.pkl'
+        #training_data = 'Labels/intent_synthesized_all_female_hindi_labels.pkl'
+        #training_data = 'Labels/intent_synthesized_all_hindi_labels.pkl'
+        #testing_data = 'Labels/intent_hindi_labels.pkl'
+        
+        frequency_uni, word_index_uni = build_naive_bayes(1, training_data, 3)
+        frequency_bi, word_index_bi = build_naive_bayes(2, training_data, 1)
         frequency_tri, word_index_tri = build_naive_bayes(3, training_data, 0)
 
         data = load_data(testing_data)
