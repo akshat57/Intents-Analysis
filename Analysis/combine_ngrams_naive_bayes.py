@@ -41,10 +41,12 @@ def cross_validation_combine(filename = "Labels/intent_labels.pkl", output_locat
         save_data(output_location + 'training_data_' + str(i) + '.pkl', training_data)
         save_data(output_location + 'testing_data_' + str(i) + '.pkl', testing_data)
 
-def run_naive_bayes_single_utterance(frequency, word_index , N,utterance):
+def run_naive_bayes_single_utterance(frequency, word_index , N,utterance, all_intents = None):
     '''Here we run naive bayes for a single utterence'''
 
-    all_intents = ['Check Last Transaction', 'CheckBalance', 'Send Money', 'Withdraw Money', 'Deposit']
+    if all_intents == None:
+        all_intents = ['Check Last Transaction', 'CheckBalance', 'Send Money', 'Withdraw Money', 'Deposit']
+    
     ngrams = build_ngrams(utterance, N)
     probability = {}
 
@@ -84,18 +86,24 @@ if __name__ == '__main__':
         #training_data = 'Labels/intent_synthesized_all_female_hindi_labels.pkl'
         #training_data = 'Labels/intent_synthesized_all_hindi_labels.pkl'
         #testing_data = 'Labels/intent_hindi_labels.pkl'
-        
+
+        #training_data = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
+        #testing_data = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
+        #all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
+
         frequency_uni, word_index_uni = build_naive_bayes(1, training_data, 3)
+        print('Unigram Done')
         frequency_bi, word_index_bi = build_naive_bayes(2, training_data, 1)
+        print('Bigram Done')
         frequency_tri, word_index_tri = build_naive_bayes(3, training_data, 0)
 
         data = load_data(testing_data)
         for key in data:
             for utterance in data[key]:
                 total += 1
-                prob_uni = run_naive_bayes_single_utterance(frequency_uni, word_index_uni , 1, utterance)
-                prob_bi = run_naive_bayes_single_utterance(frequency_bi, word_index_bi , 2, utterance)
-                prob_tri = run_naive_bayes_single_utterance(frequency_tri, word_index_tri , 3, utterance)
+                prob_uni = run_naive_bayes_single_utterance(frequency_uni, word_index_uni , 1, utterance, all_intents)
+                prob_bi = run_naive_bayes_single_utterance(frequency_bi, word_index_bi , 2, utterance, all_intents)
+                prob_tri = run_naive_bayes_single_utterance(frequency_tri, word_index_tri , 3, utterance, all_intents)
 
                 solution = {}
                 for key_sol in prob_uni:
@@ -110,12 +118,12 @@ if __name__ == '__main__':
                 if key == prob_uni_sorted[0][0]:
                     uni_correct +=1
 
-                print(key)
-                print('--Unigram:', prob_uni_sorted[0][0])
-                print('--Combo:', solution_sorted[0][0])
-                print('')
+                #print(key)
+                #print('--Unigram:', prob_uni_sorted[0][0])
+                #print('--Combo:', solution_sorted[0][0])
+                #print('')
 
-    print('Uni- Accuracy:', uni_correct/total)
+    print('Tri- Accuracy:', uni_correct/total)
     print('Combo Accuracy:', correct/total)
 
 

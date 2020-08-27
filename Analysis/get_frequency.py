@@ -18,6 +18,7 @@ def get_frequency(N = 3, filename = "Labels/intent_labels.pkl"):
     for word in vocab:
         occurences[word] = all_occurences.count(word)
     sorted_occurences = sorted(occurences.items(), key=operator.itemgetter(1), reverse = True)
+    #sorted_occurences is a list of tuples containing the ngram and frequency of each ngram. It is a sorted list.
 
     word_index = word_to_index(sorted_occurences)
 
@@ -67,7 +68,7 @@ def plot_few(frequency):
 
 if __name__ == '__main__':
 
-    frequency, sorted_occurences = get_frequency(3)
+    frequency, sorted_occurences = get_frequency(1)
     #print(frequency)
     #plot_few(frequency)
 

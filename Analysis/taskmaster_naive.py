@@ -12,15 +12,15 @@ def enablePrint():
 
 all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-print("------TRAINED: guj, TESTED: hindi------")
+print("------TRAINED: hindi, TESTED: guj------")
 for ngram in range(1,4):
     print('='*30)
     print('')
     print('------------NGRAMS :', ngram, '\n')
     for threshold in range(5):
 
-        build_file = 'Labels/TaskMaster/taskmaster_training_guj.pkl'
-        test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
+        build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
+        test_file = 'Labels/TaskMaster/taskmaster_testing_guj.pkl'
         
         blockPrint()
         frequency, word_index = build_naive_bayes(ngram, build_file, threshold)

@@ -7,7 +7,6 @@ def load_data(filename = "Labels/intent_labels.pkl"):
     return output
 
 def build_ngrams(dialogue, N):
-
     vocab = []
     if len(dialogue) > 0:
         for i in range(N-1):
@@ -19,7 +18,7 @@ def build_ngrams(dialogue, N):
             for j in range(N):
                 word += dialogue[i+j]
             vocab.append(word)
- 
+
         return vocab
     else:
         return vocab
@@ -38,7 +37,7 @@ def get_vocab(N = 3, filename= "Labels/intent_labels.pkl" ):
 
 if __name__ == '__main__':
     print('\nNumber of unique N-gram phones : ')
-    for i in range(1,5):
+    for i in range(1,2):
         vocab, _ = get_vocab(i)
         print('-- N =', i , ':', len(vocab))
         

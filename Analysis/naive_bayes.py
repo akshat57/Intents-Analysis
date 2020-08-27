@@ -24,6 +24,8 @@ def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl', threshold = 0):
     '''
         N = N-gram
         filename = filename for training set
+        threshold = decides if we're using add-1 smoothing or something else
+                    If threshold == 0, then we do add-1 smoothing
     '''
 
     frequency, word_index = get_frequency(N, filename)
