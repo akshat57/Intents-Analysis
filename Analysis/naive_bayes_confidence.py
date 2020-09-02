@@ -56,7 +56,7 @@ def run_naive_bayes_with_confidence(frequency, word_index , N = 1, filename = 'L
             else:
                 incorrect_sum.append((probability[0][1] - probability[1][1])/-probability[5][1])
 
-            if (probability[0][1] - probability[1][1])/-probability[5][1] < 0.02135733:
+            if (probability[0][1] - probability[1][1])/-probability[5][1] < 0.025:
                 if key == probability[0][0]:
                     if key not in threshold_accurate:
                         threshold_accurate[key] = 1
@@ -91,12 +91,12 @@ def run_naive_bayes_with_confidence(frequency, word_index , N = 1, filename = 'L
     nbins = 20
     mybins = np.linspace(0, maximum, nbins, True)
 
-    '''sns.distplot(correct_sum, kde = False, bins = mybins)
+    sns.distplot(correct_sum, kde = False, bins = mybins)
     sns.distplot(in2_sum, kde = False, bins = mybins)
     sns.distplot(incorrect_sum, kde = False, bins = mybins)
     plt.legend(['correct', 'incorrect with 2nd choice', 'incorrect'])
-    #sns.distplot(in2_sum)
-    plt.show()'''
+    plt.title('Trained Hindi, Tested Gujarati')
+    plt.show()
 
 
     if all_intents == None:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
     build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_guj.pkl'
 
     ngram = 3
     threshold = 0
