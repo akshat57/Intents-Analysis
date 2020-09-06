@@ -44,7 +44,7 @@ def bigram_BPE(utterance, new_symbols):
             bigram = utterance[i] + utterance[i+1]
             if bigram == mfb:
                 if mfb not in new_symbols:
-                    symbol = str(len(list(new_symbols.keys())))
+                    symbol = str(len(list(new_symbols.keys())) + 1)
                     new_symbols[mfb] = symbol
 
                 utt.append(new_symbols[mfb])
@@ -72,7 +72,7 @@ def do_bigram_BPE(data, new_symbols = {}):
 
 if __name__ == '__main__':
     build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_guj.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
 
     build_data = load_data(build_file)
     test_data = load_data(test_file)

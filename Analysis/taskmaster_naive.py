@@ -14,7 +14,7 @@ all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-orderi
 
 build_file = 'Labels/TaskMaster/taskmaster_training_hindi_BPE.pkl'
 test_file = 'Labels/TaskMaster/taskmaster_testing_hindi_BPE.pkl'
-print("------TRAINED: hindi, TESTED: guj------")
+print("------TRAINED: hindi, TESTED: hindi BPE------")
 for ngram in range(1,4):
     print('='*30)
     print('')
