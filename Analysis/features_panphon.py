@@ -6,14 +6,9 @@ import operator
 
 ft = panphon.FeatureTable()
 
-build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
-test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
+data_file = 'Labels/TaskMaster/data_taskmaster_hindi.pkl'
 
-build_data = load_data(build_file)
-test_data = load_data(test_file)
-
-
-vocab, _ = get_vocab(1, build_file)
+vocab, _ = get_vocab(1, data_file)
 vectors = {}
 for ipa in vocab:
     vectors[ipa] = np.array(ft.fts(ipa).numeric())
