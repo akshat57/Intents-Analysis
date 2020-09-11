@@ -5,7 +5,7 @@ import numpy as np
 
 ft = panphon.FeatureTable()
 
-data_file = 'Labels/TaskMaster/data_taskmaster_hindi.pkl'
+data_file = 'Labels/TaskMaster/data_taskmaster_gujarati.pkl'
 
 vocab, _ = get_vocab(1, data_file)
 vectors = {}
@@ -13,4 +13,4 @@ for ipa in vocab:
     vectors[ipa] = np.array(ft.fts(ipa).numeric())
 
 ###saving data
-save_data('panphon_data.pkl', vectors)
+save_data('panphon_features_gujarati.pkl', vectors)
