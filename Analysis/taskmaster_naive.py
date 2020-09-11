@@ -10,22 +10,24 @@ def blockPrint():
 def enablePrint():
     sys.stdout = sys.__stdout__
 
-all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
+if __name__ == '__main__':
 
-build_file = 'Labels/TaskMaster/taskmaster_training_hindi_BPE.pkl'
-test_file = 'Labels/TaskMaster/taskmaster_testing_hindi_BPE.pkl'
-print("------TRAINED: hindi, TESTED: hindi BPE------")
-for ngram in range(1,4):
-    print('='*30)
-    print('')
-    print('------------NGRAMS :', ngram, '\n')
-    for threshold in range(5):
-        
-        blockPrint()
-        frequency, word_index = build_naive_bayes(ngram, build_file, threshold)
-        correct, total, accuracy_per_intent = run_naive_bayes(frequency, word_index, ngram, test_file, all_intents)
+    all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-        enablePrint()
-        print('--THRESHOLD', threshold, ': ACCURACY = ', correct/total)
-        print(accuracy_per_intent, '\n')
+    build_file = 'Labels/TaskMaster/taskmaster_training_g.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_g.pkl'
+    print("------TRAINED: hindi, TESTED: hindi BPE------")
+    for ngram in range(1,4):
+        print('='*30)
+        print('')
+        print('------------NGRAMS :', ngram, '\n')
+        for threshold in range(2):
+            
+            blockPrint()
+            frequency, word_index = build_naive_bayes(ngram, build_file, threshold)
+            correct, total, accuracy_per_intent = run_naive_bayes(frequency, word_index, ngram, test_file, all_intents)
+
+            enablePrint()
+            print('--THRESHOLD', threshold, ': ACCURACY = ', correct/total)
+            print(accuracy_per_intent, '\n')
 

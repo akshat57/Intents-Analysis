@@ -1,44 +1,118 @@
-from get_vocab import load_data, get_vocab
+from get_vocab import load_data
 from naive_bayes import save_data
-import panphon
 import numpy as np
 import operator
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from taskmaster_naive import enablePrint, blockPrint
+from naive_bayes import build_naive_bayes, run_naive_bayes
+import time
 
-ft = panphon.FeatureTable()
+def get_clusters(N = 10):
+    feature_vectors = load_data('panphon_data.pkl')
 
-data_file = 'Labels/TaskMaster/data_taskmaster_hindi.pkl'
+    vectors = []
+    ipas = []
+    for ipa in feature_vectors:
+        vectors.append(list(feature_vectors[ipa]))
+        ipas.append(ipa)
 
-vocab, _ = get_vocab(1, data_file)
-vectors = {}
-for ipa in vocab:
-    vectors[ipa] = np.array(ft.fts(ipa).numeric())
+    #Do k-means
+    kmeans = KMeans(n_clusters=N)
+    kmeans_labels = kmeans.fit_predict(vectors)
+    kmeans_trans = kmeans.transform(vectors)
 
-###saving data
-save_data('panphon_data.pkl', vectors)
+    #Saving clustered data
+    clustered = {}
+    for index, cluster in enumerate(kmeans_labels):
+        if cluster not in clustered:
+            clustered[cluster] = [ipas[index]]
+        else:
+            clustered[cluster].append(ipas[index])
+
+    phone_to_cluster = {}
+    for cluster in clustered:
+        for phone in clustered[cluster]:
+            phone_to_cluster[phone] = str(cluster + 1)
+
+    return phone_to_cluster, clustered
 
 
-closest = {}
-for ipa in vectors:
-    temp = {}
-    for i,l in enumerate(vectors):
-        distance = np.linalg.norm(np.abs(vectors[ipa] - vectors[l]))
-        temp[l] = distance
+def convert_to_clusters(phone_to_cluster, file_name):
+    data = load_data(file_name)
 
-    closest[ipa] = sorted(temp.items(), key=operator.itemgetter(1))
+    data_clustered = {}
+    for key in data:
+        data_clustered[key] = []
+        for utterance in data[key]:
+            utterance_to_cluster = []
+            for phone in utterance:
+                utterance_to_cluster.append(phone_to_cluster[phone])
+            data_clustered[key].append(utterance_to_cluster)
+
+    return data_clustered
 
 
-print(ipa, closest[ipa])
 
+if __name__ == '__main__':
+    #Defining constants
+    build_file = 'Labels/TaskMaster/taskmaster_training_g.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_g.pkl'
+    save_train = 'Labels/TaskMaster/train_clustered.pkl'
+    save_test = 'Labels/TaskMaster/test_clustered.pkl'
+    save_best_cluster = 'Labels/TaskMaster/best_clusters.pkl'
+    all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-for key in build_data:
-    for utterance in build_data[key]:
-        for ipa in utterance:
-            a = ft.fts(ipa).numeric()
-            #print(ipa, len(ipa), a)
+    accuracy_mean = []
+    accuracy_std = []
+    best_accuracy = []
+    N_kmeans = []
+    best_cluster = {}
+        
+    for N in range(5, 20):
+        now = time.time()
+        print('='*30)
+        print('')
+        print('------------NUMBER OF CLUSTERS :', N, '\n')
+        accuracy_N = []
+        highest_accuracy = 0
 
-        '''utt = ''.join(utterance)
-        print(utt, len(utt))
-        a = ft.word_to_vector_list(utt, numeric=True)
-        print(len(a))'''
-        break
-    break
+        for repitions in range(5):
+            phone_to_cluster, clusters = get_clusters(N)
+            train_data_clustered = convert_to_clusters(phone_to_cluster, build_file)
+            test_data_clustered = convert_to_clusters(phone_to_cluster, test_file)
+
+            save_data(save_train, train_data_clustered)
+            save_data(save_test, test_data_clustered)
+
+            for ngram in range(3,4):
+
+                for threshold in range(1):
+                    
+                    blockPrint()
+                    frequency, word_index = build_naive_bayes(ngram, save_train, threshold)
+                    correct, total, accuracy_per_intent = run_naive_bayes(frequency, word_index, ngram, save_test, all_intents)
+
+                    enablePrint()
+                    print('--NGRAM', ngram, ': ACCURACY = ', correct/total)
+                    #print(accuracy_per_intent, '\n')
+                    accuracy_N.append(correct/total)
+
+            if correct/total > highest_accuracy:
+                highest_accuracy = correct/total
+                best_cluster[N] = [correct/total, clusters]
+
+        accuracy_mean.append(np.mean(np.array(accuracy_N)))
+        accuracy_std.append(np.std(np.array(accuracy_N)))
+        best_accuracy.append(max(accuracy_N))
+        N_kmeans.append(N)
+        print('Time Taken:', time.time()-now, ' -- Mean Accuracy:', accuracy_mean[-1], '-- std:', accuracy_std[-1])
+
+    save_data(save_best_cluster ,best_cluster)
+    plt.errorbar(N_kmeans, accuracy_mean, accuracy_std, fmt='-o')
+    plt.plot(N_kmeans, best_accuracy, 'r')
+    plt.plot(N_kmeans, np.full(len(N_kmeans), 0.8433333333333334), '-k')
+    plt.legend(['Best Accuracy Clustering', 'w/o clustering', 'Clustered Accuracy (Mean/Std)'])
+    plt.show()
