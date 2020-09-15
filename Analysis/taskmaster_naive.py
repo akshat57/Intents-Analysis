@@ -14,10 +14,10 @@ if __name__ == '__main__':
 
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-    build_file = 'Labels/TaskMaster/taskmaster_training_g.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_g.pkl'
+    build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
     print("------TRAINED: hindi, TESTED: hindi BPE------")
-    for ngram in range(1,4):
+    for ngram in range(3,4):
         print('='*30)
         print('')
         print('------------NGRAMS :', ngram, '\n')

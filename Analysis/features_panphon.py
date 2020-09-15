@@ -10,8 +10,8 @@ from taskmaster_naive import enablePrint, blockPrint
 from naive_bayes import build_naive_bayes, run_naive_bayes
 import time
 
-def get_clusters(N = 10):
-    feature_vectors = load_data('panphon_data.pkl')
+def get_clusters(N = 10, feature_file = 'Labels/panphon_features_hindi.pkl'):
+    feature_vectors = load_data(feature_file)
 
     vectors = []
     ipas = []
@@ -58,11 +58,14 @@ def convert_to_clusters(phone_to_cluster, file_name):
 
 if __name__ == '__main__':
     #Defining constants
-    build_file = 'Labels/TaskMaster/taskmaster_training_g.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_g.pkl'
+    language = 'gujarati'
+    lang_threshold = 0.9466
+    feature_file = 'Labels/panphon_features_' + language + '.pkl'
+    build_file = 'Labels/TaskMaster/taskmaster_training_guj.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_guj.pkl'
     save_train = 'Labels/TaskMaster/train_clustered.pkl'
     save_test = 'Labels/TaskMaster/test_clustered.pkl'
-    save_best_cluster = 'Labels/TaskMaster/best_clusters.pkl'
+    save_best_cluster = 'Labels/TaskMaster/best_clusters_' + language + '.pkl'
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
     accuracy_mean = []
@@ -71,7 +74,7 @@ if __name__ == '__main__':
     N_kmeans = []
     best_cluster = {}
         
-    for N in range(5, 20):
+    for N in range(5, 31):
         now = time.time()
         print('='*30)
         print('')
@@ -79,8 +82,8 @@ if __name__ == '__main__':
         accuracy_N = []
         highest_accuracy = 0
 
-        for repitions in range(5):
-            phone_to_cluster, clusters = get_clusters(N)
+        for repitions in range(10):
+            phone_to_cluster, clusters = get_clusters(N, feature_file)
             train_data_clustered = convert_to_clusters(phone_to_cluster, build_file)
             test_data_clustered = convert_to_clusters(phone_to_cluster, test_file)
 
@@ -113,6 +116,6 @@ if __name__ == '__main__':
     save_data(save_best_cluster ,best_cluster)
     plt.errorbar(N_kmeans, accuracy_mean, accuracy_std, fmt='-o')
     plt.plot(N_kmeans, best_accuracy, 'r')
-    plt.plot(N_kmeans, np.full(len(N_kmeans), 0.8433333333333334), '-k')
+    plt.plot(N_kmeans, np.full(len(N_kmeans), lang_threshold), '-k')
     plt.legend(['Best Accuracy Clustering', 'w/o clustering', 'Clustered Accuracy (Mean/Std)'])
     plt.show()
