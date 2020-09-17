@@ -14,14 +14,14 @@ if __name__ == '__main__':
 
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-    build_file = 'Labels/TaskMaster/taskmaster_training_hindi.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_hindi.pkl'
+    build_file = 'Labels/TaskMaster/taskmaster_phoneFromText_training_guj.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_phoneFromText_testing_guj.pkl'
     print("------TRAINED: hindi, TESTED: hindi BPE------")
-    for ngram in range(3,4):
+    for ngram in range(1,4):
         print('='*30)
         print('')
         print('------------NGRAMS :', ngram, '\n')
-        for threshold in range(2):
+        for threshold in range(3):
             
             blockPrint()
             frequency, word_index = build_naive_bayes(ngram, build_file, threshold)
