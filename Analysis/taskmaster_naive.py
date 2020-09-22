@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-    build_file = 'Labels/TaskMaster/taskmaster_phoneFromText_training_guj.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_phoneFromText_testing_guj.pkl'
+    build_file = 'Labels/TaskMaster/taskmaster_training_hindi_2voices.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_hindi_2voices.pkl'
     print("------TRAINED: hindi, TESTED: hindi BPE------")
     for ngram in range(1,4):
         print('='*30)
