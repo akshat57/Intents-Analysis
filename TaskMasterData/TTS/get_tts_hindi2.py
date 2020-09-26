@@ -8,13 +8,13 @@ def save_data(filename, data):
     a_file.close()
 
 
-audio_save_location = '/home/akshatgu/TaskMaster/translated_hindi_2voices/'
+audio_save_location = '/home/akshatgu/TaskMaster/translated_hindi/'
 language_code = 'hi-IN'
 #voices = ['hi-IN-Standard-A', 'hi-IN-Standard-B', 'hi-IN-Standard-C', 'hi-IN-Standard-D']
 voices = ['hi-IN-Standard-A', 'hi-IN-Standard-B']
 
 #Read text
-a_file = open( '../taskmaster_hindi_intent_text.txt', "r")
+a_file = open( '../DATA_VERSION1/taskmaster_hindi_intent_text.txt', "r")
 text = a_file.readlines()
 a_file.close()
 
@@ -43,4 +43,4 @@ for key in utterances:
     print(key, voice_name)
     do_tts(text, output_file, language_code, voice_name)
 
-save_data('index_to_voice_hindi_2voices.pkl', index_to_voice)
+save_data('index_to_voice_hindi.pkl', index_to_voice)
