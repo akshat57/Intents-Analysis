@@ -13,7 +13,7 @@ language_code = 'gu-IN'
 voices = ['gu-IN-Standard-A', 'gu-IN-Standard-B']
 
 #Read text
-a_file = open( '../taskmaster_gujarati_intent_text.txt', "r")
+a_file = open( '../DATA_VERSION1/taskmaster_gujarati_intent_text.txt', "r")
 text = a_file.readlines()
 a_file.close()
 

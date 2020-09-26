@@ -14,7 +14,7 @@ language_code = 'bn-IN'
 voices = ['bn-IN-Standard-A', 'bn-IN-Standard-B']
 
 #Read text
-a_file = open( '../taskmaster_bengali_intent_text.txt', "r")
+a_file = open( '../DATA_VERSION1/taskmaster_bengali_intent_text.txt', "r")
 text = a_file.readlines()
 a_file.close()
 
