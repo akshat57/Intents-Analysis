@@ -58,11 +58,11 @@ def convert_to_clusters(phone_to_cluster, file_name):
 
 if __name__ == '__main__':
     #Defining constants
-    language = 'bengali'
-    lang_threshold = 0.8667
+    language = 'english'
+    lang_threshold = 0.9267
     feature_file = 'Labels/panphon_features_' + language + '.pkl'
-    build_file = 'Labels/TaskMaster/taskmaster_training_bengali.pkl'
-    test_file = 'Labels/TaskMaster/taskmaster_testing_bengali.pkl'
+    build_file = 'Labels/TaskMaster/taskmaster_training_' + language + '.pkl'
+    test_file = 'Labels/TaskMaster/taskmaster_testing_' + language + '.pkl'
     save_train = 'Labels/TaskMaster/train_clustered.pkl'
     save_test = 'Labels/TaskMaster/test_clustered.pkl'
     save_best_cluster = 'Labels/TaskMaster/best_clusters_' + language + '.pkl'
