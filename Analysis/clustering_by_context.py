@@ -65,11 +65,11 @@ def cluster_by_context(N, all_datafile, train_file):
 
 def print_neighbours(clustered, feature_vectors, index_to_phone):
     for cluster in clustered:
-        print(clustered[cluster])
+        print('cluster:', clustered[cluster])
         for phone in clustered[cluster]:
             index = np.argmax(np.array(feature_vectors[phone]))
             best_indices = np.argsort(-np.array(feature_vectors[phone]))[:5]
-            print(phone, ':', [index_to_phone[x] for x in best_indices])
+            print('--', phone, ':', [index_to_phone[x] for x in best_indices])
         print()
 
 if __name__ == '__main__':
