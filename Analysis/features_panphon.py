@@ -58,9 +58,9 @@ def convert_to_clusters(phone_to_cluster, file_name):
 
 if __name__ == '__main__':
     #Defining constants
-    language = 'english'
-    lang_threshold = 0.9267
-    feature_file = 'Labels/panphon_features_' + language + '.pkl'
+    language = 'marathi'
+    lang_threshold = 0.8634
+    feature_file = 'Labels/TaskMaster/panphon_features_' + language + '.pkl'
     build_file = 'Labels/TaskMaster/taskmaster_training_' + language + '.pkl'
     test_file = 'Labels/TaskMaster/taskmaster_testing_' + language + '.pkl'
     save_train = 'Labels/TaskMaster/train_clustered.pkl'
@@ -118,4 +118,5 @@ if __name__ == '__main__':
     plt.plot(N_kmeans, best_accuracy, 'r')
     plt.plot(N_kmeans, np.full(len(N_kmeans), lang_threshold), '-k')
     plt.legend(['Best Accuracy Clustering', 'w/o clustering', 'Clustered Accuracy (Mean/Std)'])
+    plt.title(language)
     plt.show()

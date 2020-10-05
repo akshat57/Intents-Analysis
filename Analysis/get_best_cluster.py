@@ -1,6 +1,6 @@
 from get_vocab import load_data
 
-save_best_cluster = 'Labels/TaskMaster/best_clusters_bengali.pkl'
+save_best_cluster = 'Labels/TaskMaster/best_clusters_hindi.pkl'
 best_clusters = load_data(save_best_cluster)
 
 for kmeans in best_clusters:
