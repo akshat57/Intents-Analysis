@@ -15,11 +15,11 @@ def removeDS(array):
         array.remove('.DS_Store')
     return array
 
-filename = 'gujarati' + '_' + 'marathi' + '_' + 'bengali'
+filename = 'english' + '_' + 'hindi' + '_' + 'gujarati' + '_' + 'marathi' + '_' + 'bengali' 
 print('='*20, filename + '\n')
-info_location = '/home/akshatgu/TaskMaster/Combinations/3_languages/'
-data_location = '/home/akshatgu/TaskMaster/Combinations/3_languages/' + filename + '/'
-STORE_LOCATION = '/home/akshatgu/Intents-Analysis/TaskMasterData/Get_Phones_Combos/3_languages' 
+info_location = '/home/akshatgu/TaskMaster/Combinations/5_languages/'
+data_location = '/home/akshatgu/TaskMaster/Combinations/5_languages/' + filename + '/'
+STORE_LOCATION = '/home/akshatgu/Intents-Analysis/TaskMasterData/Get_Phones_Combos/5_languages' 
 index_to_lang = load_data(info_location + filename + '.pkl')
 index_to_intents = load_data('index_to_intents.pkl')
 
