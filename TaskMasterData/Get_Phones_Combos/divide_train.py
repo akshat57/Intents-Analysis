@@ -4,8 +4,8 @@ sys.path.insert(1, '/Users/manjugupta/Desktop/CMU_Courses/Intents/getting_intent
 from get_vocab import load_data
 from naive_bayes import save_data
 
-data_location = '2_languages/'
-languages = 'marathi_bengali'
+data_location = '3_languages/'
+languages = 'gujarati_marathi_bengali'
 phone_file = data_location + 'phones_taskmaster_' + languages + '.pkl'
 
 train_list = load_data('train_indices.pkl')
