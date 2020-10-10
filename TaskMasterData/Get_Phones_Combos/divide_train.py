@@ -5,7 +5,7 @@ from get_vocab import load_data
 from naive_bayes import save_data
 
 data_location = '3_lang_variations/'
-languages = 'hindi_gujarati_marathi_bengali_' + '50'
+languages = 'hindi_gujarati_bengali_marathi_' + '50'
 phone_file = data_location + 'phones_taskmaster_' + languages + '.pkl'
 
 train_list = load_data('train_indices.pkl')
