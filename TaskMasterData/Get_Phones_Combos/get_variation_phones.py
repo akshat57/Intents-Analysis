@@ -17,10 +17,10 @@ def removeDS(array):
 
 
 lang1 = 'hindi'
-lang2 = 'gujarati'
+lang2 = 'marathi'
 lang3 = 'bengali'
 train_lang = lang1 + '_' + lang2 + '_' + lang3
-test_lang = 'marathi'
+test_lang = 'gujarati'
 ratio = 0.5
 filename = test_lang + '_' + f'{int(ratio*100):02}'
 print(train_lang, test_lang, ratio, filename)
