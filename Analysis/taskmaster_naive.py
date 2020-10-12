@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     all_intents = ['movie-tickets', 'auto-repair', 'restaurant-table', 'pizza-ordering', 'uber-lyft', 'coffee-ordering']
 
-    build_file = '../TaskMasterData/Get_Phones_Combos/3_lang_variations/taskmaster_training_hindi_gujarati_bengali_marathi_50.pkl'
+    build_file = '../TaskMasterData/Get_Phones_Combos/3_lang_variations/taskmaster_training_hindi_marathi_bengali_gujarati_50.pkl'
     test_file = '../TaskMasterData/Get_Phones_Combos/1_language/taskmaster_testing_bengali.pkl'
     print(build_file)
     print(test_file)
