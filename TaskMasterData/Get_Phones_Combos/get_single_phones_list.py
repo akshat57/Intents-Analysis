@@ -18,8 +18,8 @@ def removeDS(array):
 filename = 'bengali'
 print('='*10, filename)
 info_location = '/home/akshatgu/TaskMaster/'
-data_location = '/home/akshatgu/TaskMaster/translated_' + filename + '/'
-STORE_LOCATION = '/home/akshatgu/Intents-Analysis/TaskMasterData/Get_Phones_Combos/1_language' 
+data_location = '/home/akshatgu/TaskMaster/Combinations/1_language/' + filename + '/'
+STORE_LOCATION = '/home/akshatgu/Intents-Analysis/TaskMasterData/Get_Phones_Combos/1_lang_train_split' 
 index_to_intents = load_data('index_to_intents.pkl')
 
 os.chdir(data_location)
