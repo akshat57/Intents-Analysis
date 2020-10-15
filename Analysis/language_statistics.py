@@ -1,6 +1,7 @@
 from get_vocab import get_vocab, load_data
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 
 languages = ['english', 'hindi', 'gujarati', 'bengali', 'marathi']
 
@@ -20,6 +21,7 @@ for lang in languages:
 #printing length of sentences
 sent_sizes = {}
 max_length = {}
+min_length = {}
 for lang in languages:
     datafile = 'Labels/TaskMaster/data_taskmaster_' + lang + '.pkl'  
     data = load_data(datafile)
@@ -29,7 +31,8 @@ for lang in languages:
             sent_sizes[lang].append(len(utterance))
     
     
-    print(lang, '-- Max Length :', max(sent_sizes[lang]))
+    print(lang, '-- Max Length :', max(sent_sizes[lang]), '-- Min Lnegth:', min(sent_sizes[lang]))
+    print('-- Mean:', np.mean(np.array(sent_sizes[lang])), np.std(np.array(sent_sizes[lang])))
     #plot sentence lengths
     sns.distplot(sent_sizes[lang])
 
