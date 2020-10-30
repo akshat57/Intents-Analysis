@@ -33,6 +33,7 @@ def build_naive_bayes(N=1, filename='Labels/intent_labels.pkl', threshold = 0):
     vocab_length = len(vocab)
 
     for key in frequency:
+        #key is intent
         total_words = sum(list(frequency[key].values()))
         
         for word in frequency[key]:
