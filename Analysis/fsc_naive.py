@@ -53,7 +53,7 @@ def get_intents():
 
 
 if __name__ == '__main__':
-    type = 'domain'
+    type = 'intents'
     split = 'train'
 
     if type == 'domain':
@@ -67,13 +67,11 @@ if __name__ == '__main__':
     print(build_file)
     print(test_file)
     print('='*20)
-    for ngram in range(3,4):
+    for ngram in range(1,4):
         print('='*30)
         print('')
         print('------------NGRAMS :', ngram, '\n')
-        #for threshold in range(6):
-        for threshold in [0, 2, 5, 10, 20]:
-            
+        for threshold in range(6):
             blockPrint()
             frequency, word_index = build_naive_bayes(ngram, build_file, threshold)
             correct, total, accuracy_per_intent = run_naive_bayes(frequency, word_index, ngram, test_file, all_intents)
